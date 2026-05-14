@@ -244,8 +244,8 @@ jupyter notebook notebooks/Capstone\ Project\ Group\ 4.ipynb
 |---|---|
 | Denis | Repo setup, `initialization.py`, `.gitignore`, `README.md` |
 | Vaz | `data_loader.py` — CSV loading & error handling |
-| Tervin  | `eda.py` — Summary stats, heatmap, boxplots, pairplot |
-| Ashad | `preprocessing.py` — Sklearn imputer → scaler pipeline |
+| Tervil  | `eda.py` — Summary stats, heatmap, boxplots, pairplot |
+| Daniel | `preprocessing.py` — Sklearn imputer → scaler pipeline |
 | Mike | `dimensionality.py` — PCA + scree plot |
 | Ian | `clustering.py` — K-Means, Hierarchical & DBSCAN implementation |
 | Markphil | `Evaluation.py` — Metrics, elbow, k-distance, dendrogram, comparison table |
