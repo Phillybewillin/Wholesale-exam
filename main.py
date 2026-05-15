@@ -29,8 +29,8 @@ def main():
     print("\n--- DIMENSIONALITY REDUCTION (PCA) ---")
     print("Generating Scree Plot to justify n_components (close window to continue)...")
     dim.plot_scree_plot(X_scaled)
-    X_pca, variance = dim.apply_pca(X_scaled, n_components=2)
-    print(f"Variance explained by 2 PCA components: {variance.sum():.2%}")
+    X_pca, variance = dim.apply_pca(X_scaled, n_components=3)
+    print(f"Variance explained by 3 PCA components: {variance.sum():.2%}")
 
     # 4. Hyperparameter Tuning (required for all 3 algorithms)
     print("\n--- HYPERPARAMETER TUNING ---")
@@ -60,7 +60,7 @@ def main():
     eval.plot_pca_clusters(X_pca, hc_labels, title=f"Hierarchical Clusters (n={K})")
 
     # DBSCAN — eps from k-distance graph, min_samples=5 (rule of thumb: 2*n_features)
-    db_labels, _ = cluster.run_dbscan(X_pca, eps=recommended_eps, min_samples=5)
+    db_labels, _ = cluster.run_dbscan(X_pca, eps=0.8, min_samples=5)
     n_db_clusters = len(set(db_labels)) - (1 if -1 in db_labels else 0)
     n_noise = list(db_labels).count(-1)
     print(f"DBSCAN done. Clusters found: {n_db_clusters} | Noise points: {n_noise}.")
@@ -79,8 +79,9 @@ def main():
             "Davies-Bouldin ↓":     round(dbi, 4),
             "Calinski-Harabasz ↑":  round(chi, 2),
         }
-
-    # 7. Comparative Summary Table (required by rubric)
+    #7. Save the comparison table as an image
+    eval.save_comparison_table_image(results)
+    # 8. Comparative Summary Table
     eval.print_comparison_table(results)
 
 

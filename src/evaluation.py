@@ -145,6 +145,29 @@ def plot_pca_clusters(data, labels, title="PCA Cluster Plot"):
     plt.show()
 
 
+def save_comparison_table_image(results, filename="data/comparison_table.png"):
+    """
+    Saves the comparison table as a PNG image for easy inclusion in the report.
+    """
+    df = pd.DataFrame(results).T
+    fig, ax = plt.subplots(figsize=(10, 2)) # Adjust size as needed
+    ax.axis('off')
+    
+    # Render the table
+    tbl = ax.table(cellText=df.values, 
+                   colLabels=df.columns, 
+                   rowLabels=df.index, 
+                   loc='center', 
+                   cellLoc='center')
+    
+    tbl.auto_set_font_size(False)
+    tbl.set_fontsize(10)
+    plt.title("Algorithm Performance Comparison", pad=20)
+    plt.savefig(filename, bbox_inches='tight', dpi=300)
+    plt.close()
+    print(f"Comparison table saved to {filename}")
+
+
 # ── Comparative Summary ───────────────────────────────────────────────────────
 
 def print_comparison_table(results):
